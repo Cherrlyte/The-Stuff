@@ -14,7 +14,7 @@ for(let i=0; i < field.length; i++){
 while(alive){
   const col = await ppt.text("Type in a column (0-4): ")
   const lin = await ppt.text("Type in a line (0-5): ")
-  if(lin > 5 ||lin < 0 || col > 4 || col < 0 || lin == "" || col == ''){
+  if(lin > 5 ||lin < 0 || col > 4 || col < 0 || lin == "" || col == '' || col == null || lin == null){
     console.log("no.")
     continue
   }
