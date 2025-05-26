@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" onkeypress="keylggr(event)">
+  <br>
+  <p id='lggrout'>[KEYLOGGER]: N/A</p>
+  <br>
+  <div onclick="sqrclick()" style="background-color: black; width: 100px; height: 100px;"></div>
+</body>
+<script>
+  function keylggr(event){
+    const k = event.key
+    const klgrtext = `[KEYLOGGER]: User pressed ${k} key!`
+    console.log(klgrtext)
+    document.getElementById('lggrout').innerHTML = klgrtext
+  }
+  function sqrclick(){
+    alert("You clicked on the square!!!!!")
+  }
+</script>
+</html>

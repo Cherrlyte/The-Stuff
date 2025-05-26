@@ -1,0 +1,8 @@
+prompt: Hello!
+~]: Hello! I'm {name}! How are you?
+prompt: hey
+~]: Heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+prompt: Oi!
+~]: Oi there mate!
+prompt: Fine
+~]: Fine here too!

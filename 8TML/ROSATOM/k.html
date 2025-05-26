@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROSATOM WEBSITE</title>
+</head>
+
+<header>
+  <img src="./png-clipart-rosatom-russia-vver-toi-nuclear-power-plant-russia-company-logo (1).png" width='2%'>
+  ROSATOM
+</header>
+
+<body style="font-family: Arial, Helvetica, sans-serif;" onload="javascript:musik()">
+  <video src="./flag.mp4" height="600" width="400" id="vidsoviet"></video>
+  <br>Bombing targets:<br>
+
+  <nav>
+    <a href="https://us.gov">UNITED STATES GOVERNMENT</a>
+    <br>
+    <a href="https://gov.br">REBUBLICA FEDERATIVA DO BRASIL</a>
+  </nav>
+  <article>
+    <aside style="float: right;">
+      Bombs used: <br>
+      <a href="https://en.wikipedia.org/wiki/W54">Mk54</a>
+    </aside>
+    <section>
+      <h4>The Plan:</h4>
+      We are now planning on how all of this will work.
+      <p>Currently, we expect to receive heavy fire from the border if an invasion is attempted, so we are straying
+        away. It will be mostly aerial.</p>
+      We are inserting an unidentified aircraft on their airspace, most likely commercial C172 or CS50, but people
+      inside will be armed. <br>
+      If they aren't dumb, the aircraft will continue onwards to land on civil airport, and then they will be shot.
+      <br>
+      <time datetime="12-04-2006">12/04/2006</time>
+    </section>
+
+    <section>
+      <h4>The Results.</h4>
+      We failed :( <br>
+      <time datetime="22-05-2006">22/05/2006</time>
+    </section>
+
+  </article>
+
+
+  <audio src="./soviet.mp3" volume=0.2 id="eeel"></audio>
+
+</body>
+
+<footer>
+  <br>
+  Made by: The Russian Kremlin
+  <br>
+  Contact at: <a href="http://www.gov.ru/">СЕРВЕР ОРГАНОВ ГОСУДАРСТВЕННОЙ ВЛАСТИ РОССИИ</a>
+</footer>
+
+<script>
+  let obj
+  let vid
+  function musik() {
+    obj = document.getElementById('eeel')
+    obj.volume = 0.6
+    vid = document.getElementById('vidsoviet')
+    vid.volume = 0
+  }
+  document.body.addEventListener("mousedown", function () {
+    obj.play()
+    vid.play()
+  })
+</script>
+
+</html>

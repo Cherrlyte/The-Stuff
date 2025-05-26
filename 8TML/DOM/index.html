@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Tree Showcase (not really)</title>
+  <link rel="stylesheet" href="resc/css/style.css">
+</head>
+
+<body>
+  Random Text without any specific tags.
+  <h1>Random Text with H1 tag.</h1>
+  <h2>Now over to H2.</h2>
+  <h3>And now over to... IS THIS COMIC SANS?</h3>
+
+  <div id="yapping" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    In theory, all non-H3 tags (AKA Children of Body) wield the "Verdana" font, while h3 wields "Comic Sans". <br>
+    In practice, it works, and i hate it. <br> <br>
+    How it works: <br>
+    CSS Styling follows a DOM tree, as in, Document Object Model. The name doesn't matter though, what matters is what
+    it does. <br>
+    DOM makes it so styling is applied by object, which by default makes it so that <i>EVERY object with specific styling WILL receive such styling.</i> <br>
+    EXAMPLE: If i have a completely populated body element with multiple other elements (h1, h3, div, i, whatever), ALL
+    elements with their styling defined WILL be styled accordingly. Those who don't have defined styling will, by
+    default, inherit the styling from their parent element .
+    <br> <br>
+    Think of it like this: The element div doesn't have styling, but the parent element (header) does, which means: <br>
+    Header ===> Div <br>
+    But the h3 element inside div does have its own styling, so it does a: <br>
+    Header ===> Div =X=> H3 <i style="color: gray; font-size: .45em;">(( =X=> as in H3 does not inherit styling, rather uses its own. ))</i> <br>
+    However, if we give the div elements its own style AND remove h3's... <br>
+    Header =X=> Div ===> H3 <i style="color: gray; font-size: .45em;">(( =X=> as in Div doesn't inherit styling, rather uses its own. ))</i> <br>
+    Div doesn't inherit styling, and H3 inherits Div's. <br> <br>
+    Also, funny thing, it doesn't matter how low in the hierarchy it is, if it's defined, it WILL use styling. <br>
+    Header ===> Div ===> Div =X=> Article ===> Div ===> Div =X=> Article ===> Div ===> P =X=> Em <i style="color: gray; font-size: .45em;">(( =X=> as in element doesn't inherit styling, since it has its own. ))</i> <br> <br>
+    Also, notice how EVERY element gets their styling inherited (except for Em, of course). That means you can style one element and ALL ITS CHILDREN WILL BE STYLED LIKE IT.
+    An example is a div with fifteen thousand p elements as children will naturally style all those fifteen thousand elements the same as it is styled.
+  </div>
+</body>
+
+</html>

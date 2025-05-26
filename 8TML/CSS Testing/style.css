@@ -1,0 +1,54 @@
+/*MS-DOS based Font for CodeText*/
+@font-face {
+  font-family: REALLYCOOLDOSFONT;
+  src: url(resc/fonts/ModernDOS9x16.ttf);
+}
+/*Extremely Ugly Font for Extremely Ugly Text*/
+@font-face {
+  font-family: ExtremelyUglyFontForExtremelyUglyText;
+  src: url(resc/fonts/GROBOLD.ttf);
+}
+
+#extremelyspecificextremelyuglyfontwithextremelyuglynameandextremelyuglybackgroundandextremelyuglystyling{
+  font-family: ExtremelyUglyFontForExtremelyUglyText;color: lawngreen;stroke: black;stroke-width: 25px;background-color: deeppink;font-size: 47.281px;font-weight: bolder;background-size: 200px;
+}
+
+header{
+  padding: 10px;
+  margin: 1px 25% 0px 0px;
+  border-bottom: 6px double aliceblue;
+}
+
+/*Makes the body actually good*/
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(33, 33, 33);
+  color: rgb(214, 214, 214);
+}
+
+footer{
+  border-top: 6px double aliceblue;
+  text-align: center;
+  padding: 20px;
+  margin: 30px 8px 0;
+  color: rgb(218, 218, 218);
+}
+
+/*Gives H2s a very ugly font with a very ugly background*/
+h2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(0, 74, 139);
+}
+
+/*CodeText, use when handling code. It makes it look extra "Techy" so the people think it's complicated.*/
+.codetext{
+  font-family: REALLYCOOLDOSFONT;
+  color: rgb(0, 203, 20);
+  background-color: black;
+  border: 2px solid aliceblue;
+  padding: 5px;
+  margin: 5px 10% 5px;
+  text-decoration: underline;
+  text-decoration-color: aliceblue;
+  text-decoration-thickness: .002px;
+}
