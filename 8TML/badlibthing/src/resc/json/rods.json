@@ -1,30 +1,30 @@
 {
   "EEU-233": {
-    "name": "Extremely-Enriched Uranium-233",
+    "name": "Platinum-Grade Strategic Fission Matrix™",
     "mpower": 40,
     "ppr": 25800,
     "drating": 1
   },
   "HEU-235": {
-    "name": "High-Enriched Uranium-235",
+    "name": "Advanced Yield Optimization Core™",
     "mpower": 25,
     "ppr": 18250,
     "drating": 1
   },
   "MEU-235": {
-    "name": "Medium-Enriched Uranium-235",
+    "name": "Balanced Performance Reactor Insert™",
     "mpower": 10,
     "ppr": 10150,
     "drating": 1
   },
   "LEU-238": {
-    "name": "Low-Enriched Uranium-238",
+    "name": "Cost-Effective Output Module™",
     "mpower": 2,
     "ppr": 6500,
     "drating": 1
   },
   "ThF-232":{
-    "name": "Thorium-232 Fuel",
+    "name": "Sustainable Innovation Fuel Unit™",
     "mpower": 3.421,
     "ppr": 12100,
     "drating": 1
