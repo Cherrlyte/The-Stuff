@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  padding: 5px;
+}
+
+header{
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.5em;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid black;
+}
+
+header b{
+  vertical-align: middle;
+}
+header img{
+  margin-left: 15px;
+  vertical-align: middle;
+  display: inline;
+}
+
+input{
+  border: 1px solid black;
+  border-radius: 2.5px;
+  margin: .5px;
+  background-color: rgb(237, 237, 237);
+}
+
+select{
+  border: 1px solid black;
+  border-radius: 2.5px;
+  margin: .5px;
+  background-color: rgb(237, 237, 237);
+}
+
+textarea{
+  border-radius: 2.5px;
+  padding: 2px;
+  background-color: rgb(237, 237, 237);
+  border: 2px solid black;
+}
+
+aside{
+  float: right;
+}
