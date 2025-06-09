@@ -27,8 +27,8 @@ while True:
 		print("Garisson EDG Systems\n")
 		print(f"Generated Power: {math.floor(pwr) / 1000}kW") # Print generated power.
 		print(f"Generator Output: {round(((pwr/60)*0.85) /1000, 2)}kWh")
-		print(f"Buffer Charge: {round(buffr/buffrm, 2)}% ({round(buffr/1000, 2)}kWh)") # Print generated power.
-		print(f"Fuel Level: {round(math.floor(fuel) / 15, 2)}%") # Print fuel percentage.
+		print(f"Buffer Charge: {round((buffr/buffrm)*100, 2)}% ({round(buffr/1000, 2)}kWh)") # Print generated power.
+		print(f"Fuel Level: {round(math.floor(fuel) / 15, 2)}% ({round((fuel / (fuelcm/60))/60, 1)} min. Remaining)") # Print fuel percentage.
 		if buffr < buffrm - 15000:
 			buffr += (pwr/10)*0.85 # (Power / 10 (conversion)) * Efficiency (85%)
 		else:
