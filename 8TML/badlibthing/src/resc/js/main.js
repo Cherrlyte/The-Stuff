@@ -81,7 +81,7 @@ async function loadNuclearFuelOptionsWith1000LineCommentsAndVerboseNaming(elemen
 async function ridiculouslyOverengineeredCountryFetcherWith10LogsPerLoop(element) {
     let response, countryData;
     try {
-        response = await fetch('https://restcountries.com/v3.1/all');
+        response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2');
         countryData = await response.json();
     } catch (error) {
         console.error("❌ Failed fetching countries:", error);

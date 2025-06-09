@@ -8,7 +8,7 @@ async function loadVals() {
 }
 
 async function countryFetcher(element) {
-  const res = await fetch('https://restcountries.com/v3.1/all')
+  const res = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2')
   let json = await res.json()
   json.sort(function (a, b) {
     console.log
