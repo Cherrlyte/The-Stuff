@@ -1,6 +1,7 @@
 let field = [[],[],[],[],[]]
 let alive = true
 let guessed = 0
+let prevpicks = []
 
 for(let i=0; i < field.length; i++){
   const table = document.getElementById('mintab')
@@ -22,10 +23,24 @@ for(let i=0; i < field.length; i++){
 while(alive){
   const col = prompt("Type in a column (0-4)")
   const lin = prompt("Type in a line (0-5)")
+  let fail = false
   if(lin > 5 ||lin < 0 || col > 4 || col < 0 || lin == "" || col == ''){
     alert("no.")
     continue
   }
+  for(let i=0; i < prevpicks.length; i++){
+    if(JSON.stringify([lin, col]) == JSON.stringify(prevpicks[i])){
+      alert("Oi, you already went there shithead.")
+      fail = true
+      break
+    }else{
+      fail = false
+    }
+  }
+  if(fail){
+    continue
+  }
+  prevpicks.push([lin, col])
   if(field[col][lin] == 1){
     let death=4
     do{
