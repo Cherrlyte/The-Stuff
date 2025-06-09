@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="results">Results here</p>
+</body>
+<script>
+  const name = "c00lk1d123"
+  const age = -5
+  const rstr = "peepeepoopoo"
+  const add = 15 + 523
+  const mult = 3 * (2/(1/4))
+  const stradd = rstr + age
+
+  let output = ""
+  output += `Name: ${name}<br>`
+  output += `Age: ${age}<br>`
+  output += `Addition: ${add}<br>`
+  output += `Multiplication: ${mult}<br>`
+  output += `Randomstring: ${stradd}<br>`
+  
+  document.getElementById("results").innerHTML = output
+</script>
+</html>
