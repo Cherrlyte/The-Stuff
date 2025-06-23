@@ -25,30 +25,15 @@ let totTable = {
   'LIK': 0
 }
 
-function randomNumberGenerator(max, min, quant){
-  quant = quant != null ? quant : 
+function randomNumberGenerator(max, min){
   min = min != null ? min : 1
   max = max != null ? max : 100
-
-  if(quant > 1){
-    let arr = []
-    for(let i = 0; i < quant; i++){
-      arr[i] = Math.floor(Math.random() * (max-min+1) + min)
-    }
-    return arr
-  }else{
-    return Math.floor(Math.random() * (max-min+1) + min)
-  }
+  return Math.floor(Math.random() * (max-min+1) + min)
 }
 
 function genMod(val){
-  if(val > 15){
-    return Math.round(1+(val/1.2))
-  }else if(val > 7){
-    return (0+(val/1.2)).toFixed(0)
-  }else{
-    return Math.round(-1 + (val/1.2))
-  }
+  const gen = Math.floor((val-10)/2)
+  return gen > 0 ? gen : 1
 }
 
 function final(){
@@ -69,10 +54,10 @@ function finalHTML(){
   for(i in totTable){
     rngTable[i] = randomNumberGenerator(20)
     modTable[i] = genMod(rngTable[i])
-    totTable[i] = parseInt(rngTable[i]) + parseInt(modTable[i])
-    document.getElementById(`${i}RNG`).innerHTML = rngTable[i]
-    document.getElementById(`${i}MOD`).innerHTML = modTable[i]
-    document.getElementById(`${i}TOT`).innerHTML = totTable[i]
+    totTable[i] = parseInt(rngTable[i]) * parseInt(modTable[i])
+    document.getElementById(`${i}RNG`).value = rngTable[i]
+    document.getElementById(`${i}MOD`).value = modTable[i]
+    document.getElementById(`${i}TOT`).value = totTable[i]
   }
 }
 
