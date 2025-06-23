@@ -11,20 +11,14 @@ async function countryFetcher(element) {
   const res = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2')
   let json = await res.json()
   json.sort(function (a, b) {
-    console.log
-    if (a.name.common < b.name.common) {
-      return -1
-    } else if (a.name.common > b.name.common) {
-      return 1
-    }
+    if (a.name.common < b.name.common) { return -1 }
+    else if (a.name.common > b.name.common) { return 1 }
     return 0
   })
   for (i in json) {
-    const name = json[i].name.common
-    const abb = json[i].cca2
     const node = document.createElement('option')
-    node.setAttribute("value", abb)
-    node.innerHTML = `${name}`
+    node.setAttribute("value", json[i].cca2)
+    node.innerHTML = `${json[i].name.common}`
     element.appendChild(node)
   }
 }
@@ -33,16 +27,11 @@ async function dynaLoadSelIn(filename, element) {
   let thejson; const res = await fetch(`./resc/json/${filename}`); thejson = await res.json()
   for (i in thejson) {
     const node = document.createElement('option')
-    const fshort = i
-    const flong = thejson[i].name
-    const tpwr = thejson[i].mpower
-    const moolah = thejson[i].ppr
-    const dngr = thejson[i].drating
-    node.setAttribute("value", fshort)
-    node.setAttribute("tpwr", tpwr)
-    node.setAttribute("price", moolah)
-    node.setAttribute("drating", dngr)
-    node.innerHTML = flong
+    node.setAttribute("value", i)
+    node.setAttribute("tpwr", thejson[i].mpower)
+    node.setAttribute("price", thejson[i].ppr)
+    node.setAttribute("drating", thejson[i].drating)
+    node.innerHTML = thejson[i].name
     element.appendChild(node)
   }
 }
@@ -63,12 +52,10 @@ function updateVals() {
   let eee = ""
   let ROSSIYA = false
   let TPWR = parseFloat(ftypesel.options[ftypesel.selectedIndex].getAttribute('tpwr')) * parseFloat(rodn)
-  let EPWR = TPWR * 0.75
   let tnumber = document.getElementById('ntbines').value
   let teff = parseFloat(tpress.options[tpress.selectedIndex].getAttribute('eff'))
   let tprice = parseFloat(tpress.options[tpress.selectedIndex].getAttribute('price')) * tnumber
-  console.log(teff)
-  let ultrascarynumber = 
+  let ultrascarynumber = 0
   
   tefficiency = (tnumber / 25) * parseFloat(teff)
   ultrascarynumber = (TPWR * 0.75) * tefficiency
@@ -90,7 +77,7 @@ function updateVals() {
     document.getElementById('desc').removeAttribute('disabled')
     document.getElementById('desc').value = "This is a Boiling Water Reactor. Boiling Water Reactors are Light Water Reactors, meaning they use mostly pure but chemically treated water (H²O) in its reactor cycle. Using fission, it heats up the water and vaporizes it into steam, which spins a turbine once at a high enough pressure and thus spins a generator, before being condensed back into water, chemically treated and put back into the reactor."
     document.getElementById('flag').src = flagbaseurl + `${country}/flat/64.png`
-    const fname = rname.value ? `"${rname.value}"` : ''
+    const fname = rnamef.value ? `"${rnamef.value}"` : ''
     const fop = opname ? opname : '"Default Inc."'
     rnamef.innerHTML = `${fop} BWR-${Math.floor(ultrascarynumber)} <i>${fname}<i/>`
   }
