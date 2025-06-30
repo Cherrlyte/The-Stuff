@@ -49,6 +49,7 @@ function updateVals() {
   //Actual Variables
   const rodn = document.getElementById('nrods').value
   const opname = document.getElementById("op").value
+  const rname = document.getElementById('rname')
   let eee = ""
   let ROSSIYA = false
   let TPWR = parseFloat(ftypesel.options[ftypesel.selectedIndex].getAttribute('tpwr')) * parseFloat(rodn)
@@ -77,7 +78,7 @@ function updateVals() {
     document.getElementById('desc').removeAttribute('disabled')
     document.getElementById('desc').value = "This is a Boiling Water Reactor. Boiling Water Reactors are Light Water Reactors, meaning they use mostly pure but chemically treated water (H²O) in its reactor cycle. Using fission, it heats up the water and vaporizes it into steam, which spins a turbine once at a high enough pressure and thus spins a generator, before being condensed back into water, chemically treated and put back into the reactor."
     document.getElementById('flag').src = flagbaseurl + `${country}/flat/64.png`
-    const fname = rnamef.value ? `"${rnamef.value}"` : ''
+    const fname = rname.value ? `"${rname.value}"` : ''
     const fop = opname ? opname : '"Default Inc."'
     rnamef.innerHTML = `${fop} BWR-${Math.floor(ultrascarynumber)} <i>${fname}<i/>`
   }
