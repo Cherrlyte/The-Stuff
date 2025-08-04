@@ -1,0 +1,13 @@
+{
+  "name": "qftsol",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "play": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Menhyy 'Lyte'",
+  "license": "IMITFU License V5",
+  "description": "",
+  "type": "module"
+}
