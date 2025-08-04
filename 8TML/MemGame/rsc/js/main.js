@@ -1,14 +1,5 @@
 const sel = document.getElementById("numsel")
-
-class Carrd extends HTMLElement{
-    constructor(){
-      super()
-      let cTemp = document.getElementById("cardTemplate")
-      let tCon = cTemp.content
-      const sRoot = this.attachShadow({mode: 'open'})
-      sRoot.appendChild(tCon.cloneNode(true))
-    }
-  }
+const table = document.getElementById("game")
 
 function initialSetup(){
   for(let i=4; i <=20; i+=2){
@@ -20,6 +11,13 @@ function initialSetup(){
   }
 }
 
-
-customElements.define("actual-card", Carrd)
+function makeCard(){
+  const temp = document.getElementById("cardTemplate")
+  let clone = temp.content.cloneNode(true)
+  clone.querySelector('#aeiou').innerHTML = "Carrd"
+  table.appendChild(clone)
+}
 initialSetup()
+for(let i=0; i < 20; i++){
+  makeCard()
+}

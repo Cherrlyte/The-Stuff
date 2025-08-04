@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,28 @@
   <script defer src="rsc/js/main.js"></script>
   <link rel="stylesheet" href="rsc/css/main.css">
 </head>
+
 <body>
   <h1>MemGame 2000</h1>
-  MemGame is a simple, good and (very) old memory game. You have to pick a card and then pick another one. If they match, they stay up; If they don't, you turn both of them down and try again.
+  MemGame is a simple, good and (very) old memory game. You have to pick a card and then pick another one. If they
+  match, they stay up; If they don't, you turn both of them down and try again.
   <br>
   Your goal is to get all cards with the image facing up.
   <br> <br>
   <select name="" id="numsel">
   </select>
+  <br>
   <button>Let's roll!</button>
 
   <template id="cardTemplate">
-    <style>
-      .cardBase{ 
-        display: flexbox;
-        width: 75px;
-        height: 100px;
-        background-color: aqua;
-      }
-    </style>
     <div class="cardBase">
-      <h1><slot name="aeiou"></slot></h1>
+      <h1 id="aeiou"></h1>
     </div>
-      
   </template>
 
-  <actual-card>
-    <span slot="aeiou">aaaeaea</span>
-  </actual-card>
-
   <div id="game">
-    
+
   </div>
 </body>
+
 </html>

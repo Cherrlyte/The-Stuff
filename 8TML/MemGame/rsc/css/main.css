@@ -1,4 +1,38 @@
 html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+body {
+  color: aliceblue;
+  background-color: rgb(28, 28, 28);
+}
+
+.cardBase {
+  display: flexbox;
+  width: 75px;
+  height: 100px;
+  background-color: aqua;
+  margin: 2px;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 20px;
+  font-size: 1.2em;
+}
+
+select {
+  color: rgb(173, 173, 173);
+  background: none;
+  border: none;
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+#game{
+  width: 80%;
+  height: 80%;
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
 }
