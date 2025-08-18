@@ -14,21 +14,23 @@
   MemGame is a simple, good and (very) old memory game. You have to pick a card and then pick another one. If they
   match, they stay up; If they don't, you turn both of them down and try again.
   <br>
-  Your goal is to get all cards with the image facing up.
+  Your goal is to get all cards green. Easy, right?
   <br> <br>
-  <select name="" id="numsel">
-  </select>
-  <br>
-  <button>Let's roll!</button>
+  <div id="seldiv">
+    Select the number of cards you want: <br>
+    <select name="" id="numsel">
+    </select>
+    <button id="startbutton" onclick="startGame(document.getElementById('numsel').value)">Let's roll!</button>
+  </div>
 
   <template id="cardTemplate">
     <div class="cardBase" CardID="1" CardType="a">
-      <h1 id="aeiou"></h1>
+      <h2 id="aeiou"></h2>
     </div>
   </template>
-
+  <p id="ftext">Click the "Let's roll!" button to start.</p>
   <div id="game">
-
+    
   </div>
 </body>
 
