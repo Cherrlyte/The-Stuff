@@ -1,0 +1,57 @@
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  color: antiquewhite;
+}
+
+.App{
+  padding: 15px;
+  background-color: #062e1f;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+header{
+  margin-bottom: 20px;
+  border-bottom: 2px solid aliceblue;
+  margin-right: 45%;
+}
+
+.ListBody{
+  padding: 5px;
+  display: flexbox;
+  background-color: rgba(33, 33, 33, 0.701);
+  border: 2.2px solid rgb(70, 70, 70);
+  border-radius: 8px;
+}
+
+.ListItem{
+  width: 85%;
+  background-color: rgb(28, 28, 28);
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.ItemTitle{
+  color: white;
+  font-size: calc(10px + 2vmin);
+  border-bottom: 1px dashed aliceblue;
+  margin-bottom: 10px;
+}
+
+.ItemContent{
+  display: flex;
+  font-size: calc(5px + 2vmin);
+}
+
+input[type='text']{
+  height: 20px;
+}
+
+.ItemImage img{
+  margin-right: 10px;
+  width: calc(85px + 2vmin);
+}
