@@ -28,8 +28,9 @@ function MovieObj({ movie }) {
   function handleChange(){
     console.log('hey')
     movie.watched = !movie.watched
-    sStatus(!movie.watched)
+    sStatus(movie.watched)
     console.log(movieList)
+    console.log(sStatus)
   }
 }
 
