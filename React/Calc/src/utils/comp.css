@@ -1,0 +1,7 @@
+.calc{
+  display: grid;
+  box-shadow: 5px 5px 5px black;
+  width: 360px;
+  font-size: 2em;
+  font-weight: bold;
+}

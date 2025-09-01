@@ -1,6 +1,8 @@
+import "./comp.css"
+
 export function Calculator() {
   return(
-    <div>
+    <div className="calc">
       Calc
     </div>
   )
