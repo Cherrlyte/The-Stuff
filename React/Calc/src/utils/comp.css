@@ -1,7 +1,27 @@
 .calc{
   display: grid;
   box-shadow: 5px 5px 5px black;
-  width: 360px;
+  width: 300px;
   font-size: 2em;
   font-weight: bold;
+}
+.screen{
+  border: 1px solid aliceblue;
+  text-align: right;
+}
+.butt{
+  justify-content: center;
+  height: 50px;
+}
+.buttbox{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.final{
+  margin: 0;
+}
+
+.inputonly{
+  margin: 0;
+  font-size: .5em;
 }
