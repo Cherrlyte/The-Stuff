@@ -1,27 +1,64 @@
+@font-face {
+  font-family: DOS;
+  src: url(../assets/fonts/ModernDOS8x16.ttf);
+}
+
 .calc{
+  border: 3px solid rgb(47, 47, 47);
+  border-radius: 5px;
+  background-color: rgb(79, 79, 79);
+  padding: 5px;
   display: grid;
   box-shadow: 5px 5px 5px black;
-  width: 300px;
+  width: 500px;
   font-size: 2em;
   font-weight: bold;
 }
+
 .screen{
-  border: 1px solid aliceblue;
-  text-align: right;
+  font-family: DOS;
+  background-color: black;
+  font-size: 1.2em;
+  padding: 3.4px;
+  color: rgb(13, 179, 13);
+  border: 2px solid rgb(116, 116, 116);
+  margin-bottom: 10px;
 }
-.butt{
+.screen *{
+  margin: 0;
+}
+
+.allBox{
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+}
+.actBox{
+  margin-left: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+button{
+  background-color: rgb(38, 38, 38);
+  border: 1px solid rgb(23, 23, 23);
   justify-content: center;
-  height: 50px;
 }
+button:hover{
+  background-color: rgb(26, 26, 26);
+}
+button:active{
+  background-color: rgb(13, 13, 13);
+}
+
 .buttbox{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.final{
-  margin: 0;
+.buttbox button{
+  border-radius: 5px;
+  height: 70px;
 }
 
-.inputonly{
-  margin: 0;
+.smallText{
   font-size: .5em;
 }

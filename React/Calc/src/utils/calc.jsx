@@ -17,7 +17,6 @@ function Buttons(t) {
 
   function handleNegate() {
     if (!t.input.includes("-", 0)) {
-      console.log("no minus")
       t.setInput("-" + t.input)
     } else {
       const stripped = t.input.replace("-", "")
@@ -26,11 +25,11 @@ function Buttons(t) {
   }
 
   for (let i = 1; i < 10; i++) {
-    final.push(<button className="butt" key={i} onClick={() => { handleClick(i) }}>{i}</button>)
+    final.push(<button key={i} onClick={() => { handleClick(i) }}>{i}</button>)
   }
-  final.push(<button className="butt" key="negate" onClick={handleNegate}>+/-</button>)
-  final.push(<button className="butt" key={0} onClick={() => handleClick(0)}>0</button>)
-  final.push(<button className="butt" key='decimal' onClick={addDecimal}>.</button>)
+  final.push(<button key="negate" onClick={handleNegate}>+/-</button>)
+  final.push(<button key={0} onClick={() => handleClick(0)}>0</button>)
+  final.push(<button key='decimal' onClick={addDecimal}>.</button>)
   return final
 }
 
@@ -51,8 +50,9 @@ function ActBox(l) {
   }
   function handleOperand(op) {
     let num = ""
-    let finalexpr = ""
-    if (l.input == "" || isNaN(parseFloat(l.input))) return
+    if (l.final[String(l.final).length - 1] != ")") {
+      if (l.input == "" || isNaN(parseFloat(l.input))) return
+    }
     if (parseFloat(l.input) < 0) {
       num = `(${l.input})`
     } else { num = l.input }
@@ -61,19 +61,54 @@ function ActBox(l) {
     l.sIn("")
   }
 
-  function handleClear() {
+  function handleClear(all) {
     l.sIn('')
-    l.setFin('')
-    l.setDisplay('')
+    if (all == true) {
+      l.setFin('')
+      l.setDisplay('')
+    }
   }
 
-  butts.push(<button className="butt" key="plus" onClick={() => { handleOperand("+") }}>+</button>)
-  butts.push(<button className="butt" key="minus" onClick={() => { handleOperand("-") }}>-</button>)
-  butts.push(<button className="butt" key="multi" onClick={() => { handleOperand("*") }}>x</button>)
-  butts.push(<button className="butt" key="divide" onClick={() => { handleOperand("/") }}>/</button>)
-  butts.push(<button className="butt" key="inschar" onClick={() => { handleOperand("") }}>iNS</button>)
-  butts.push(<button className="butt" key="clear" onClick={handleClear}>C</button>)
-  butts.push(<button className="butt" key="equal" onClick={handleCalc}>=</button>)
+  function handleSpecial(operand) {
+    let num = ""
+    if (l.input == "" || isNaN(parseFloat(l.input))) return
+    if (parseFloat(l.input) < 0) {
+      num = `(${l.input})`
+    } else { num = l.input }
+
+    l.setFin(l.final + `${operand}(${num})`)
+    l.sIn("")
+  }
+
+  function handleInsert(operand) {
+    if (l.input != "") {
+      if (l.input == "" || isNaN(parseFloat(l.input))) return
+      operand = l.input + operand
+      l.sIn("")
+    }
+    l.setFin(l.final + `${operand}`)
+  }
+
+  function handleBack() {
+    if (l.input == "" || isNaN(parseFloat(l.input))) return
+    l.sIn(l.input.slice(0, -1))
+  }
+
+  butts.push(<button key="back" onClick={handleBack}>BCKSP</button>)
+  butts.push(<button key="clear" onClick={handleClear}>C</button>)
+  butts.push(<button key="clearall" onClick={() => { handleClear(true) }}>CA</button>)
+  butts.push(<button key="plus" onClick={() => { handleOperand("+") }}>+</button>)
+  butts.push(<button key="minus" onClick={() => { handleOperand("-") }}>-</button>)
+  butts.push(<button key="multi" onClick={() => { handleOperand("*") }}>x</button>)
+  butts.push(<button key="divide" onClick={() => { handleOperand("/") }}>/</button>)
+  butts.push(<button key="pow" onClick={() => { handleOperand("^") }}>^</button>)
+  butts.push(<button key="square" onClick={() => { handleSpecial("sqrt") }}>²√</button>)
+  butts.push(<button key="log" onClick={() => { handleSpecial("log") }}>log(x)</button>)
+  butts.push(<button key="ln" onClick={() => { handleSpecial("ln") }}>ln(x)</button>)
+  butts.push(<button key="dunno" onClick={() => { handleSpecial("abs") }}>abs(x)</button>)
+  butts.push(<button key="po" onClick={() => { handleInsert("(") }}>(</button>)
+  butts.push(<button key="pc" onClick={() => { handleInsert(")") }}>)</button>)
+  butts.push(<button key="equal" onClick={handleCalc}>=</button>)
 
   return butts
 }
@@ -87,14 +122,16 @@ export function Calculator() {
   return (
     <div className="calc">
       <div className='screen'>
-        <p className="final">{display == "" ? "N/A" : display}</p>
-        <p className="inputonly">{`${input} (${fin})`}</p>
+        <p>{display == "" ? "N/A" : display}</p>
+        <p className="smallText">{`${input} (${fin})`}</p>
       </div>
-      <div className="buttbox">
-        <Buttons setInput={setInput} input={input} dis={display} callTheFeds={setDisplay} />
-      </div>
-      <div className="actBox">
-        <ActBox final={fin} setDisplay={setDisplay} setFin={setFin} input={input} sIn={setInput} />
+      <div className="allBox">
+        <div className="buttbox">
+          <Buttons setInput={setInput} input={input} dis={display} callTheFeds={setDisplay} />
+        </div>
+        <div className="actBox">
+          <ActBox final={fin} setDisplay={setDisplay} setFin={setFin} input={input} sIn={setInput} />
+        </div>
       </div>
     </div>
   )
