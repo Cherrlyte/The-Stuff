@@ -123,7 +123,7 @@ export function Calculator() {
     <div className="calc">
       <div className='screen'>
         <p>{display == "" ? "N/A" : display}</p>
-        <p className="smallText">{`${input} (${fin})`}</p>
+        <p className="smallText">{`${input} [ ${fin} ]`}</p>
       </div>
       <div className="allBox">
         <div className="buttbox">
