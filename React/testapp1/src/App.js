@@ -3,35 +3,121 @@ import randimg from './logo192.png'
 import './App.css';
 import { useState } from 'react';
 
+
+
 function ThyList({ movies }) {
   const [filtered, setFilter] = useState('')
   const [OnWt, setOW] = useState(false)
   return (
     <div className="App">
-      <MovieTable stuff={movies} filter={filtered} ow={OnWt}/>
+      <TheBar setFilter={setFilter} filter={filtered} setOW={setOW} ow={OnWt} />
+      <MovieTable stuff={movies} filter={filtered} ow={OnWt} />
+      <Adder />
     </div>
   );
 }
 
+function TheBar(l) {
+  function changeFilter(v) {
+    l.setFilter(v)
+  }
+  return (
+    <div>
+      <div id='inBox'>
+        <input type='text' placeholder='Type to set filter...' value={l.filter} onChange={e => { changeFilter(e.target.value) }} />
+        <span id="owBox">
+          Only Unwatched
+          <input type='checkbox' value={l.ow} onChange={e => { l.setOW(!l.ow) }} />
+        </span>
+      </div>
+    </div>
+  )
+}
+
+function Adder() {
+  let [name, sname] = useState('')
+  let [rating, srating] = useState('')
+  let [rdate, srdate] = useState('')
+
+  function addMovie(){
+    movieList.push(
+      {name: name, rating: rating, rdate: rdate, watched: false}
+    )
+  }
+
+  function changeVal(e, val){
+    switch(val){
+      case 'name':
+        sname(e.target.value)
+        break
+      case 'rating':
+        srating(e.target.value)
+        break
+      case 'rdate':
+        srdate(e.target.value)
+        break
+    }
+  }
+
+  return (
+    <table className='addTable'>
+      <thead>
+        <tr>
+          <th><input className='newInput' onChange={e => { changeVal(e, 'name') }} value={name} placeholder='Movie Name...'  /></th>
+          <th><input className='newInput' onChange={e => { changeVal(e, 'rating') }} value={rating}  placeholder='??/??'  /></th>
+          <th><input className='newInput' onChange={e => { changeVal(e, 'rdate') }} value={rdate} placeholder='00/00/0000'  /></th>
+          <th><button className='addButton2' onClick={()=>{addMovie()}}>+</button></th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  )
+}
+
 function MovieObj({ movie }) {
-  let [status, sStatus] = useState(movie.watched)  
+  let [status, sStatus] = useState(movie.watched)
+  let [isEdit, sEdit] = useState(false)
 
   return (
     <tr>
-      <td>{movie.name}</td>
-      <td>{movie.rating}</td>
-      <td>{movie.rdate}</td>
+      <td>{!isEdit ? movie.name : <EditBox movie={movie} vr='name'/>} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} /></td>
+      <td>{!isEdit ? movie.rating : <EditBox movie={movie} vr='rating'/>} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} /></td>
+      <td>{!isEdit ? movie.rdate : <EditBox movie={movie} vr='rdate' />} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} /></td>
       <td><input type='checkbox' defaultChecked={status} onChange={handleChange}></input></td>
     </tr>
   )
 
-  function handleChange(){
-    console.log('hey')
+  function handleChange() {
     movie.watched = !movie.watched
     sStatus(movie.watched)
+
     console.log(movieList)
     console.log(sStatus)
   }
+}
+
+function EditBox({ movie, vr }) {
+  const [name, sName] = useState(movie[vr])
+  function editName(e) {
+    movie[vr] = e.target.value
+    sName(movie[vr])
+    e.target.style.width = String(e.target.value).length + "ch"
+  }
+  return (
+    <input className='editBox' value={name} onChange={e => { editName(e) }} maxLength='25' 
+    style={{ width: `${String(name).length}ch` }} />
+  )
+}
+
+function EditButton(l) {
+  function invokeEditor(e) {
+    l.setEdit(!l.isEdit)
+    e.target.innerHTML = l.isEdit ? '✎' : '✓'
+  }
+  return (
+    <button className='addButton' onClick={e => { invokeEditor(e) }}>✎</button>
+  )
 }
 
 function MovieTable({ stuff, filter, ow }) {
@@ -41,7 +127,7 @@ function MovieTable({ stuff, filter, ow }) {
     if (m.name.toLowerCase().indexOf(filter.toLowerCase()) == -1) {
       return
     }
-    if(m.watched && ow){ return }
+    if (m.watched && ow) { return }
     r.push(<MovieObj movie={m} key={m.name} />)
   })
 

@@ -1,9 +1,3 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  color: antiquewhite;
-}
-
 .App{
   padding: 15px;
   background-color: #062e1f;
@@ -12,51 +6,100 @@
   color: white;
 }
 
-header{
-  margin-bottom: 20px;
-  border-bottom: 2px solid aliceblue;
-  margin-right: 45%;
+table{
+  align-content: center;
+  width: 75.1%;
+  border: 2px solid aliceblue;
 }
 
-.ListBody{
-  padding: 5px;
-  display: flexbox;
-  background-color: rgba(33, 33, 33, 0.701);
-  border: 2.2px solid rgb(70, 70, 70);
-  border-radius: 8px;
-}
-
-.ListItem{
-  width: 85%;
-  background-color: rgb(28, 28, 28);
+td, th{
+  align-content: center;
   border: 1px solid black;
-  border-radius: 6px;
-  padding: 4px;
-  margin-bottom: 10px;
-}
-
-.ItemTitle{
-  color: white;
-  font-size: calc(10px + 2vmin);
-  border-bottom: 1px dashed aliceblue;
-  margin-bottom: 10px;
-}
-
-.ItemContent{
-  display: flex;
-  font-size: calc(5px + 2vmin);
-}
-
-input[type='text']{
-  height: 20px;
-}
-
-.ItemImage img{
-  margin-right: 10px;
-  width: calc(85px + 2vmin);
 }
 
 table, th, td{
+  align-content: center;
   padding: 2px;
-  border: 1px solid black;
+}
+
+.editBox{
+  font-weight: normal;
+  font-size: calc(10px + 2vmin);
+  background: none;
+  border: 0;
+  color: white;
+}
+
+.addButton{
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: aliceblue;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.addButton2{
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  font-size: 1.2em;
+  color: aliceblue;
+  opacity: 1;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.addTable{
+  justify-content: center;
+  align-content: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.addButton:hover{
+  opacity: 1;
+}
+
+.newInput{
+  background-color: #191919;
+  border: 1px solid aliceblue;
+  color: aliceblue;
+  font-size: 1em;
+  padding: 5px;
+  width: 92%;
+  height: 1.2ch;
+  margin-bottom: 5px ;
+}
+
+input[type=text]{
+  background-color: #191919;
+  border: 1px solid aliceblue;
+  color: aliceblue;
+  font-size: 1.4em;
+  padding: 5px;
+  width: 60%;
+  height: 100%;
+  margin-right: 5px;
+}
+
+#owBox{
+  align-content: center;
+  text-align: center;
+  vertical-align: middle;
+  float: right;
+}
+
+#inBox{
+  align-content: center;
+  vertical-align: middle;
+  width: 75%;
+  display: inline-block;
+  border: 1px solid aliceblue;
+  background-color: #191919;
+  font-size: .60em;
 }
