@@ -49,9 +49,9 @@ function Adder(l) {
 
   function addMovie() {
     let flag = false
-    if (name == '' || name == undefined || name == null) return
+    if (name === '' || name === undefined || name == null) return
     Object.values(l.list).forEach((i) => {
-      if (i.name.toLowerCase() == name.toLowerCase()) {
+      if (i.name.toLowerCase() === name.toLowerCase()) {
         alert("An item with this name already exists!")
         flag = true
       }
@@ -73,6 +73,8 @@ function Adder(l) {
         break
       case 'rdate':
         srdate(e.target.value)
+        break
+      default:
         break
     }
   }
@@ -116,9 +118,9 @@ function MovieObj({ saveList, movie, list }) {
 function EditBox({ movie, vr, list, sList }) {
   const [name, sName] = useState(movie[vr])
   function editName(e) {
-    if (e.target.value == '' && vr == 'name') {
+    if (e.target.value === '' && vr === 'name') {
       if (window.confirm("Do you want to delete this entry?")) { //I could add another button for it, but i think this works nicely. It might be annoying for some users, though.
-        list.forEach((i, x) => { if (i.name == name) list.splice(x, 1) }); sList(); return
+        list.forEach((i, x) => { if (i.name === name) list.splice(x, 1) }); sList(); return
       }
     }
     movie[vr] = e.target.value
@@ -146,7 +148,7 @@ function MovieTable({ stuff, filter, ow, saveList }) {
   const r = []
 
   stuff.forEach((m) => {
-    if (m.name.toLowerCase().indexOf(filter.toLowerCase()) == -1) return
+    if (m.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return
     if (m.watched && ow) return 
     r.push(<MovieObj movie={m} key={m.name} list={stuff} saveList={saveList} />)
   })
