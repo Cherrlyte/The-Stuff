@@ -146,10 +146,8 @@ function MovieTable({ stuff, filter, ow, saveList }) {
   const r = []
 
   stuff.forEach((m) => {
-    if (m.name.toLowerCase().indexOf(filter.toLowerCase()) == -1) {
-      return
-    }
-    if (m.watched && ow) { return }
+    if (m.name.toLowerCase().indexOf(filter.toLowerCase()) == -1) return
+    if (m.watched && ow) return 
     r.push(<MovieObj movie={m} key={m.name} list={stuff} saveList={saveList} />)
   })
 
