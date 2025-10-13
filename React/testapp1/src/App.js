@@ -6,7 +6,7 @@ import { useState } from 'react';
 function ThyList({ movies }) {
   const [filtered, setFilter] = useState('')
   const [OnWt, setOW] = useState(false)
-  const [list, sList] = useState(movies)
+  const [list, sList] = useState(movies != null ? movies : [])
 
   function saveList() {
     window.localStorage.setItem('testapp1.list', JSON.stringify(list))
