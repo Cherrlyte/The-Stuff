@@ -1,5 +1,3 @@
-import logo from './FG.svg';
-import randimg from './logo192.png'
 import './App.css';
 import { useState } from 'react';
 
@@ -8,11 +6,21 @@ import { useState } from 'react';
 function ThyList({ movies }) {
   const [filtered, setFilter] = useState('')
   const [OnWt, setOW] = useState(false)
+  const [list, sList] = useState(movies)
+
+  function saveList() {
+    window.localStorage.setItem('testapp1.list', JSON.stringify(list))
+    getList()
+  }
+  function getList() {
+    sList(JSON.parse(window.localStorage.getItem('testapp1.list')))
+  }
+
   return (
     <div className="App">
       <TheBar setFilter={setFilter} filter={filtered} setOW={setOW} ow={OnWt} />
-      <MovieTable stuff={movies} filter={filtered} ow={OnWt} />
-      <Adder />
+      <MovieTable stuff={list} filter={filtered} ow={OnWt} saveList={saveList} />
+      <Adder list={list} saveList={saveList} />
     </div>
   );
 }
@@ -34,19 +42,29 @@ function TheBar(l) {
   )
 }
 
-function Adder() {
+function Adder(l) {
   let [name, sname] = useState('')
   let [rating, srating] = useState('')
   let [rdate, srdate] = useState('')
 
-  function addMovie(){
-    movieList.push(
-      {name: name, rating: rating, rdate: rdate, watched: false}
+  function addMovie() {
+    let flag = false
+    if (name == '' || name == undefined || name == null) return
+    Object.values(l.list).forEach((i) => {
+      if (i.name.toLowerCase() == name.toLowerCase()) {
+        alert("An item with this name already exists!")
+        flag = true
+      }
+    })
+    if (flag) return
+    l.list.push(
+      { name: name, rating: rating, rdate: rdate, watched: false }
     )
+    l.saveList()
   }
 
-  function changeVal(e, val){
-    switch(val){
+  function changeVal(e, val) {
+    switch (val) {
       case 'name':
         sname(e.target.value)
         break
@@ -63,10 +81,10 @@ function Adder() {
     <table className='addTable'>
       <thead>
         <tr>
-          <th><input className='newInput' onChange={e => { changeVal(e, 'name') }} value={name} placeholder='Movie Name...'  /></th>
-          <th><input className='newInput' onChange={e => { changeVal(e, 'rating') }} value={rating}  placeholder='??/??'  /></th>
-          <th><input className='newInput' onChange={e => { changeVal(e, 'rdate') }} value={rdate} placeholder='00/00/0000'  /></th>
-          <th><button className='addButton2' onClick={()=>{addMovie()}}>+</button></th>
+          <th><input className='newInput' onChange={e => { changeVal(e, 'name') }} value={name} placeholder='Movie Name...' /></th>
+          <th><input className='newInput' onChange={e => { changeVal(e, 'rating') }} value={rating} placeholder='??/??' /></th>
+          <th><input className='newInput' onChange={e => { changeVal(e, 'rdate') }} value={rdate} placeholder='00/00/0000' /></th>
+          <th><button className='addButton2' onClick={() => { addMovie() }}>+</button></th>
         </tr>
       </thead>
       <tbody>
@@ -75,15 +93,15 @@ function Adder() {
   )
 }
 
-function MovieObj({ movie }) {
+function MovieObj({ saveList, movie, list }) {
   let [status, sStatus] = useState(movie.watched)
   let [isEdit, sEdit] = useState(false)
 
   return (
     <tr>
-      <td>{!isEdit ? movie.name : <EditBox movie={movie} vr='name'/>} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} /></td>
-      <td>{!isEdit ? movie.rating : <EditBox movie={movie} vr='rating'/>} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} /></td>
-      <td>{!isEdit ? movie.rdate : <EditBox movie={movie} vr='rdate' />} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} /></td>
+      <td>{!isEdit ? movie.name : <EditBox movie={movie} vr='name' list={list} sList={saveList} />} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} sList={saveList} /></td>
+      <td>{!isEdit ? movie.rating : <EditBox movie={movie} vr='rating' list={list} sList={saveList} />} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} sList={saveList} /></td>
+      <td>{!isEdit ? movie.rdate : <EditBox movie={movie} vr='rdate' list={list} sList={saveList} />} <EditButton movie={movie} isEdit={isEdit} setEdit={sEdit} sList={saveList} /></td>
       <td><input type='checkbox' defaultChecked={status} onChange={handleChange}></input></td>
     </tr>
   )
@@ -91,27 +109,31 @@ function MovieObj({ movie }) {
   function handleChange() {
     movie.watched = !movie.watched
     sStatus(movie.watched)
-
-    console.log(movieList)
-    console.log(sStatus)
+    saveList()
   }
 }
 
-function EditBox({ movie, vr }) {
+function EditBox({ movie, vr, list, sList }) {
   const [name, sName] = useState(movie[vr])
   function editName(e) {
+    if (e.target.value == '' && vr == 'name') {
+      if (window.confirm("Do you want to delete this entry?")) { //I could add another button for it, but i think this works nicely. It might be annoying for some users, though.
+        list.forEach((i, x) => { if (i.name == name) list.splice(x, 1) }); sList(); return
+      }
+    }
     movie[vr] = e.target.value
     sName(movie[vr])
     e.target.style.width = String(e.target.value).length + "ch"
   }
   return (
-    <input className='editBox' value={name} onChange={e => { editName(e) }} maxLength='25' 
-    style={{ width: `${String(name).length}ch` }} />
+    <input className='editBox' value={name} onChange={e => { editName(e) }} maxLength='25'
+      style={{ width: `${String(name).length}ch` }} />
   )
 }
 
 function EditButton(l) {
   function invokeEditor(e) {
+    if (l.isEdit) l.sList()
     l.setEdit(!l.isEdit)
     e.target.innerHTML = l.isEdit ? '✎' : '✓'
   }
@@ -120,7 +142,7 @@ function EditButton(l) {
   )
 }
 
-function MovieTable({ stuff, filter, ow }) {
+function MovieTable({ stuff, filter, ow, saveList }) {
   const r = []
 
   stuff.forEach((m) => {
@@ -128,7 +150,7 @@ function MovieTable({ stuff, filter, ow }) {
       return
     }
     if (m.watched && ow) { return }
-    r.push(<MovieObj movie={m} key={m.name} />)
+    r.push(<MovieObj movie={m} key={m.name} list={stuff} saveList={saveList} />)
   })
 
   return (
@@ -148,18 +170,6 @@ function MovieTable({ stuff, filter, ow }) {
   )
 }
 
-let movieList = [
-  { name: "Cool Movie 123", watched: false, rating: "0/10", rdate: "05/05/2005" },
-  { name: "Stupid Person's Movie", watched: true, rating: "11/10", rdate: "09/09/2009" },
-  { name: "The Rising 1", watched: false, rating: "9/10", rdate: "02/11/1992" },
-  { name: "The Rising 2", watched: false, rating: "0/10", rdate: "09/02/2004" },
-  { name: "The Rising 3", watched: true, rating: "8/10", rdate: "12/09/2005" },
-  { name: "The Rising 1: Reboot", watched: false, rating: "4/10", rdate: "02/11/2006" },
-  { name: "The Rising 4", watched: false, rating: "1/10", rdate: "12/01/2010" },
-  { name: "The Rising Prologue", watched: false, rating: "2/10", rdate: "05/08/2016" },
-  { name: "The Rising Origins", watched: true, rating: "8/10", rdate: "04/05/2020" },
-]
-
 export default function App() {
-  return <ThyList movies={movieList} />
+  return <ThyList movies={JSON.parse(window.localStorage.getItem('testapp1.list'))} />
 };
