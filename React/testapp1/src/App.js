@@ -170,6 +170,14 @@ function MovieTable({ stuff, filter, ow, saveList }) {
   )
 }
 
-export default function App() {
+export default function App({ dlist }) {
+  if(dlist){
+    try{
+      JSON.parse(dlist)
+    } catch(e){
+      return <p>Invalid list!</p>
+    }
+    return <ThyList movies={JSON.parse(dlist)} />
+  }
   return <ThyList movies={JSON.parse(window.localStorage.getItem('testapp1.list'))} />
 };

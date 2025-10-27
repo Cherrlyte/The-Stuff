@@ -44,7 +44,6 @@ function App() {
     for (let i = 0; i < 9; i++) {
       eeee.push(<table key={i}><TheCube cubename={i} board={board}/></table>)
     }
-    
     return eeee
   }
 
