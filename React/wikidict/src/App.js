@@ -1,21 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 
-const uri = "https://thewallofpiss.duckdns.org/Anarchy/dict.json"
+const uri = "https://actinyde.duckdns.org/Anarchy/dict.json"
 
 function WikiList({ json, row }) {
   const diglets = []
-  for(let i in json[row]['content']){
-    console.log(i)
+  for (let i in json[row]) {
+    if (i === 'content') {
+      for (let x in json[row]['content']) {
+        diglets.push(<WikiItem name={x} key={x} rows={json[row]['info']['slots']} data={json[row]['content'][x]} appends={json[row]['info'].append}/>)
+      }
+    }
   }
+  return (
+    <div className='theStuff'>
+      {diglets}
+    </div>
+  )
 }
 
-function WikiItem({ name }) {
+function WikiItem({ name, rows, appends, data }) {
+  let rowData = Object.values(rows)
+  let rowz = []
+  for(let i = 0; i < rowData.length; i++){
+    const formattedString = `${rowData[i]}: ${Object.values(data)[i]}${Object.values(appends)[i]}`
+    rowz.push(<div key={rowData[i]}>{formattedString}</div>)
+  }
   return (
-    <div>
-      <p>{name}</p>
+    <div className='Stuff'>
+      <h2>{name}</h2>
+      <div>
+        {rowz}
+      </div>
     </div>
+  )
+}
+
+function Selector({setRow, apiContent}){
+  let options = []
+  for (let i in apiContent) {
+    options.push(<option key={i} value={i}>{apiContent[i]['info'].formatted}</option>)
+  }
+  function handler(){
+    const val = document.getElementById('rowSel').selectedIndex
+    setRow(document.getElementById('rowSel')[val].value)
+  }
+  return(
+    <select id='rowSel' onChange={handler}>
+      {options}
+    </select>
   )
 }
 
@@ -26,7 +59,9 @@ function App() {
   useEffect(() => {
     async function fetchCont() {
       const res = await fetch(uri)
-      setAPC(await res.json())
+      const json = await res.json()
+      setAPC(json)
+      console.log(json)
     }
     if (refr) {
       fetchCont()
@@ -37,7 +72,9 @@ function App() {
   return (
     <div className="App">
       <div>
-        <WikiList json={apiContent} row={currRow}/>
+        <h1>WikiDict</h1>
+        <Selector setRow={setRow} apiContent={apiContent}/> <button onClick={()=>{setRefr(true)}}>Refresh</button>
+        <WikiList json={apiContent} row={currRow} />
       </div>
     </div>
   );
