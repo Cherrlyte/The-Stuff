@@ -7,7 +7,7 @@ try:
 except Exception as err:
     print(f"nah, {err}")
 else:
-    sup=bs(res.content, 'html.parser')
+    sup=bs(res.content, 'html.parser') # type: ignore
     search = []
     search.append(lle)
     for i in sup.find_all('body'):
