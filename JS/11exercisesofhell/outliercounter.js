@@ -1,4 +1,4 @@
-const n = isNaN(process.argv[2]) ? 1223334444555566 : parseFloat(process.argv[2])
+const n = isNaN(process.argv[2]) ? 1223334444555566 : BigInt(process.argv[2])
 let amount = {};
 let lis = []
 for(let i in String(n)){
