@@ -1,6 +1,6 @@
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms)) //Delay function to increase success rate by making the randomizer more variable.
 const n = isNaN(process.argv[2]) ? 164253 : parseFloat(process.argv[2]) //We fetch the numbers to sort from the user using Node Arguments
-const nodelay = (process.argv[3].toLowerCase() === 'true') ? true : false //Nodelay bool in case we don't want the delay.
+const nodelay = (process.argv[3] === 'true') ? true : false //Nodelay bool in case we don't want the delay.
 
 let lis = [] //We make an empty list.
 for(let i in String(n)){
