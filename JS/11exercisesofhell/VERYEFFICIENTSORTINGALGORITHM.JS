@@ -69,7 +69,7 @@ let trynum = 0
 
 while (sorted == false) { // while not sorted...
 
-  for (var delay = 0; delay < 1000; delay++) {
+  for (var delay = 0; delay < 10000000; delay++) {
     Math.sqrt(Math.random() * Math.random()) // this is clearly a crucial step for sorting
   }
 
