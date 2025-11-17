@@ -17,16 +17,13 @@ function checkIfSorted(list) {
 }
 
 function badSort(list) {
-  let last = -Infinity
+  let last = -Infinity;
   for (let i in list) {
     if (list[i] < last) {
-      console.log(`Swapping ${list[i]} with ${last}`)
-      list[i-1] = list[i]
-      list[i] = last
+      console.log(`Swapping ${list[i]} with ${last}`);
+      list[i-1] = list[i]; list[i] = last;
     } 
-    else {
-      last = list[i]
-    }
+    else last = list[i];
   }
 }
 
