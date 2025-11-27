@@ -1,13 +1,13 @@
 const n = isNaN(process.argv[2]) ? null : BigInt(process.argv[2]) //We fetch the numbers to sort from the user using Node Arguments
 
 let lis = [] //We make an empty list.
-if(!n === null){
+if(n !== null){
   for (let i in String(n)) {
   lis.push(String(n)[i]) //We turn the given input into a string and push each character into a list.
 }
 }else{
-  for(let i = 0; i < 40; i++){
-    lis.push(Math.floor(Math.random()*20))
+  for(let i = 0; i < 80; i++){
+    lis.push(Math.floor(Math.random()*1000))
   }
 }
 
