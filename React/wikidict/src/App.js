@@ -58,8 +58,16 @@ function App() {
   const [refr, setRefr] = useState(true)
   useEffect(() => {
     async function fetchCont() {
-      const res = await fetch(uri)
-      const json = await res.json()
+      let res
+      let json
+      try{
+        res = await fetch(uri)
+        json = await res.json()
+      }catch(e){
+        console.log(e)
+        setAPC({})
+        return
+      }
       setAPC(json)
       console.log(json)
     }
