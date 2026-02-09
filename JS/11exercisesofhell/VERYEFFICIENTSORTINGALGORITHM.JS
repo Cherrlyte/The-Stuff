@@ -7,7 +7,6 @@ else { //if it is
   n = parseFloat(n) //set it to the thing 
   if (isNaN(n)) { //redundancy?
     n = 12543
-    return
   }
 }
 
