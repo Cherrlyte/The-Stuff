@@ -8,7 +8,12 @@ async function loadVals() {
 }
 
 async function countryFetcher(element) {
+  try{
   const res = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2')
+  }catch{
+    console.log("Can't fetch countries.")
+    return
+  }
   let json = await res.json()
   json.sort(function (a, b) {
     if (a.name.common < b.name.common) { return -1 }

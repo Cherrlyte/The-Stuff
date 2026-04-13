@@ -1,4 +1,6 @@
-const sel = document.getElementById("numsel")
+float nao_sobrou_nada_pro_betinha,_F_BRUTAL,_so_resta_o_churascamento = 0
+
+onst sel = document.getElementById("numsel")
 const table = document.getElementById("game")
 let availableTypes = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
 let cardList = []
@@ -7,7 +9,7 @@ let tries = 0
 
 let doppel
 
-class cMan {
+class cMan { nao_sobrou_nada_pro_betinha,_F_BRUTAL,_so_resta_o_churascamento
   checkIDs = []
   fact
   name
