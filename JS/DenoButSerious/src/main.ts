@@ -1,28 +1,28 @@
-import http from "http"
-import { MongoClient } from "mongodb"
+import express from "express";
+import cors from 'cors'
+import contactDB from "./config/db.ts";
+import authRoutes from "./routes/auth.ts"
+import userRoutes from "./routes/protected.ts"
 
-const dbClient = new MongoClient("mongodb://127.0.0.1:27017")
+const app = express();
 
-const srv = http.createServer((req, res) => {
-  switch(req.url){
-    case "/":
-      res.statusCode = 200;
-      res.end("Root of webpage.");
-      break;
-    case "/500test":
-      res.statusCode = 500;
-      res.end("Oh no! Anyways...")
-      break;
-    case "/emptypage":
-      res.statusCode = 200;
-      break;
-    default:
-      res.statusCode = 404;
-      res.end("Request cannot be handled: Not Found.");
-      break;
-  }
-})
+app.use(express.json());
+app.use(cors())
+app.use(express.urlencoded({ extended: true }))
 
-srv.listen(3000, () => {
-  console.log("Running!")
-})
+app.use("/~/auth", authRoutes)
+app.use("/~/user", userRoutes)
+
+app.get("/", (_req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Root of webpage",
+  });
+});
+
+contactDB().then(() => {
+  app.listen(Deno.env.get("SRV_PORT"), (err) => {
+    if (err) throw err;
+    console.log(`Server listening on port ${Deno.env.get("SRV_PORT")}`);
+  });
+});

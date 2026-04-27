@@ -13,6 +13,7 @@ const uSchema = new mongoose.Schema<IUser>({
     name:{
         type: String,
         required: [true, "No name, no access! No John Does allowed!"],
+        unique: true,
         trim: true
     },
     email:{
@@ -35,7 +36,11 @@ uSchema.methods.checkHashes = async function(accessKey:string):Promise<boolean>{
     return await bcrypt.compare(accessKey, this.accessKey)
 }
 
-uSchema.pre('save', async function(){
+uSchema.pre('save', async function () {
+    const minlenght = uSchema.path('accessKey').options.minlenght
+    if (this.accessKey.length < minlenght) {
+        throw({code: 909, message: `Password is shorter than minlenght (${minlenght})`})
+    }
     if(this.isModified('accessKey')){
         this.accessKey = await bcrypt.hash(this.accessKey, 12)
     }
