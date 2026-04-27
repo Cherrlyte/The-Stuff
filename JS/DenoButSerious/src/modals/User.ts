@@ -52,6 +52,7 @@ uSchema.pre('save', async function () {
         emailw = emailw + "@shitmail.com"
         this.email = emailw
     }
+    this.email = this.email.replace(/ /g, "")
 })
 
 export default mongoose.model<IUser>("User", uSchema)
